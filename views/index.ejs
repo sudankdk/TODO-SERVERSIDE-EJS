@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2d2d3b;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background-color: #3e3e4e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 400px;
+      }
+      h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        text-align: center;
+      }
+      form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #5a5a6f;
+        border-radius: 4px;
+        margin-right: 10px;
+        background-color: #2d2d3b;
+        color: #ffffff;
+      }
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        background-color: #5a5a6f;
+        color: #ffffff;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      button:hover {
+        background-color: #78789e;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #4a4a5e;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      li form {
+        margin: 0;
+      }
+      li button {
+        background-color: #ff4a4a;
+      }
+      li button:hover {
+        background-color: #ff7878;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To-Do List</h1>
+      <form action="/add" method="POST">
+        <input type="text" name="task" required />
+        <button type="submit">Add Task</button>
+      </form>
+      <ul>
+        <% tasks.forEach((task, index) => { %>
+        <li>
+          <span><%= task %></span>
+          <form action="/delete" method="POST" style="display: inline">
+            <input type="hidden" name="taskIndex" value="<%= index %>" />
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>
